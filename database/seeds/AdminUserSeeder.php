@@ -28,5 +28,16 @@ class AdminUserSeeder extends Seeder
         ]);
 
         $admin->assignRole('administrator');
+
+        /** @var User $host */
+        $host = User::create([
+            'name' => 'Host',
+            'email' => 'host@helpforhealth.ro',
+            'email_verified_at' => Carbon::now(),
+//            'password' => Hash::make(Str::random(16))
+            'password' => Hash::make('tesT')
+        ]);
+
+        $host->assignRole('host');
     }
 }
