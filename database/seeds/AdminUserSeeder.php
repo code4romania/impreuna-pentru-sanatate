@@ -29,6 +29,17 @@ class AdminUserSeeder extends Seeder
 
         $admin->assignRole('administrator');
 
+        /** @var User $admin */
+        $admin2 = User::create([
+            'name' => 'Marius Administrator',
+            'email' => 'marius+admin@citizennext.ro',
+            'email_verified_at' => Carbon::now(),
+//            'password' => Hash::make(Str::random(16))
+            'password' => Hash::make('tesT')
+        ]);
+
+        $admin2->assignRole('administrator');
+
         /** @var User $host */
         $host = User::create([
             'name' => 'Host',
