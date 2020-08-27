@@ -25,7 +25,9 @@ class AdminUserSeeder extends Seeder
                 'email' => 'admin@helpforhealth.ro',
                 'email_verified_at' => Carbon::now(),
 //            'password' => Hash::make(Str::random(16))
-                'password' => Hash::make('tesT')
+                'password' => Hash::make('tesT'),
+                'country_id' => 178,
+                'city' => 'Bucuresti'
             ]);
 
             $admin->assignRole('administrator');
@@ -36,7 +38,9 @@ class AdminUserSeeder extends Seeder
                 'email' => 'marius+admin@citizennext.ro',
                 'email_verified_at' => Carbon::now(),
 //            'password' => Hash::make(Str::random(16))
-                'password' => Hash::make('tesT')
+                'password' => Hash::make('tesT'),
+                'country_id' => 178,
+                'city' => 'Bucuresti'
             ]);
 
             $admin2->assignRole('administrator');
@@ -47,7 +51,9 @@ class AdminUserSeeder extends Seeder
                 'email' => 'host@helpforhealth.ro',
                 'email_verified_at' => Carbon::now(),
 //            'password' => Hash::make(Str::random(16))
-                'password' => Hash::make('tesT')
+                'password' => Hash::make('tesT'),
+                'country_id' => 178,
+                'city' => 'Bucuresti'
             ]);
 
             $host->assignRole('host');
