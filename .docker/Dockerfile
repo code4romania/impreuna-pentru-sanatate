@@ -1,4 +1,6 @@
-FROM citizennext/webserver:latest
+FROM citizennext/webserver:php8
+
+ENV DEBIAN_FRONTEND noninteractive
 
 ARG APP_ENV
 ARG APP_KEY
@@ -85,11 +87,19 @@ ENV NOCAPTCHA_SECRET=${NOCAPTCHA_SECRET}
 ENV NOCAPTCHA_SITEKEY=${NOCAPTCHA_SITEKEY}
 ENV GOOGLE_MAPS_API_KEY=${GOOGLE_MAPS_API_KEY}
 
+# install packages
+RUN apt-get install --no-install-recommends -y curl
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
 # copy application file
 COPY . /var/www/html
 
 # create application environment file
 RUN cp .env.example .env
+
+# run composer again to optimize autoload.
+RUN composer install --optimize-autoloader --no-dev --no-cache
 
 # prepare Laravel log
 RUN touch /var/www/html/storage/logs/laravel.log
@@ -103,8 +113,7 @@ COPY .docker/config/nginx/default /etc/nginx/sites-available/default
 COPY .docker/config/nginx/nginx.conf /etc/nginx/nginx.conf
 
 # configure php-fpm
-COPY .docker/config/php-fpm/www.conf /etc/php/7.4/fpm/pool.d/www.conf
-
+COPY .docker/config/php-fpm/www.conf /etc/php/8.0/fpm/pool.d/www.conf
 
 EXPOSE 80
 

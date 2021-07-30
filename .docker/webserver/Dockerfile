@@ -1,4 +1,4 @@
-FROM citizennext/webserver:latest
+FROM citizennext/webserver:php8
 
 # install Nginx
 COPY config/nginx/default /etc/nginx/sites-available/default
